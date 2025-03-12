@@ -9,24 +9,24 @@ This module performs the following tasks:
        - NCBI’s nr database using BLASTP.
        - UniProt via the EBI BLAST service.
   3. Saves (or reuses) the raw BLAST XML results using the FASTA file’s base name as a prefix.
-  4. Parses BLAST hit data into an Excel file that includes the following columns:
+  4. Parses BLAST hit data into an Excel file that includes extended columns:
        - Database, Hit Title, Hit ID (for UniProt hits), Hit Length, E-value, Score,
          Query Start, Query End, Hit Sequence, and Coverage (%).
-  5. Builds a phylogenetic tree from unique hit sequences. For UniProt hits, the "Hit ID"
-     is used when available; otherwise, the first token of "Hit Title" is used.
-     The tree is saved in Newick format, printed as an ASCII tree, and a graphical PDF image is generated.
+  5. Builds a phylogenetic tree from unique hit sequences (using Hit ID for UniProt data when available),
+     outputs the tree in Newick format, prints an ASCII tree, and generates a PDF image.
      
-All generated files are prefixed with the input FASTA file’s base name.
+All generated files (XML, Excel, FASTA, aligned FASTA, Newick tree, PDF image) are prefixed with
+the base name of the input FASTA file.
 
 Usage:
-    python prot_Search.py <fasta_file>
+    python NUMPy.py <fasta_file>
 
 Dependencies:
     - Biopython
     - pandas
     - requests
-    - matplotlib (for generating the tree image)
-    - MUSCLE 5.3 installed and accessible via the command "muscle" (with options -align and -output)
+    - matplotlib (for PDF image generation)
+    - MUSCLE 5.3 installed and accessible as "muscle" (using options: -align and -output)
 """
 
 import sys
@@ -43,47 +43,45 @@ from Bio import Phylo, AlignIO
 from Bio.Phylo.TreeConstruction import DistanceCalculator, DistanceTreeConstructor
 import logging
 
-# Configure logging for detailed output.
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 
 
 class ProteinBlastSearch:
     """
     Class to perform BLAST searches and compile results.
-
+    
     Attributes:
         fasta_file (str): Path to the input FASTA file.
-        email (str): Email address used for BLAST API requests.
-        query_sequence (str): Protein sequence extracted from the FASTA file.
+        email (str): Email address for BLAST API requests.
+        query_sequence (str): The protein sequence read from the FASTA file.
         query_length (int): Length of the protein sequence.
         results (list): List of dictionaries containing parsed BLAST hit data.
-        prefix (str): Base name of the input FASTA file (used as a prefix for all generated files).
+        prefix (str): Base name of the input FASTA file (without extension), used as a prefix for all generated files.
     """
-
+    
     def __init__(self, fasta_file, email):
         """
         Initialize the ProteinBlastSearch instance.
-
+        
         Args:
             fasta_file (str): Path to the input FASTA file.
-            email (str): Email address to use for BLAST requests.
+            email (str): Email address for BLAST requests.
         """
         self.fasta_file = fasta_file
         self.email = email
         self.query_sequence = ""
         self.query_length = 0
         self.results = []
-        # Set the prefix to the FASTA file's base name (without extension).
         self.prefix = os.path.splitext(os.path.basename(self.fasta_file))[0]
-
+    
     def load_sequence(self):
         """
         Load the protein sequence from the FASTA file.
-
+        
         Sets:
-            self.query_sequence (str): The protein sequence.
-            self.query_length (int): The length of the protein sequence.
-
+            self.query_sequence (str): Protein sequence.
+            self.query_length (int): Length of the sequence.
+        
         Raises:
             SystemExit: If no sequences are found.
         """
@@ -94,18 +92,18 @@ class ProteinBlastSearch:
         self.query_sequence = str(records[0].seq)
         self.query_length = len(self.query_sequence)
         logging.info("Loaded protein sequence: {}".format(records[0].id))
-
+    
     def run_ncbi_blast(self):
         """
         Run BLAST search on NCBI's nr database using BLASTP.
-
-        Checks if an XML file (<prefix>_ncbi_blast_result.xml) exists. If so, it reuses it;
-        otherwise, it performs the search and saves the XML.
-
+        
+        Checks for an existing XML file (<prefix>_ncbi_blast_result.xml); if found, reuses it.
+        Otherwise, performs the BLAST search.
+        
         Returns:
-            list: List of dictionaries with BLAST hit information. Each dictionary includes:
-                  "Database", "Hit Title", "Hit ID" (empty for NCBI), "Hit Length", "E-value", 
-                  "Score", "Query Start", "Query End", "Hit Sequence", "Coverage (%)".
+            list: List of dictionaries with keys:
+                  "Database", "Hit Title", "Hit ID" (empty for NCBI), "Hit Length",
+                  "E-value", "Score", "Query Start", "Query End", "Hit Sequence", "Coverage (%)".
         """
         xml_filename = f"{self.prefix}_ncbi_blast_result.xml"
         if os.path.exists(xml_filename):
@@ -132,7 +130,6 @@ class ProteinBlastSearch:
         ncbi_results = []
         for alignment in blast_record.alignments:
             for hsp in alignment.hsps:
-                # Calculate coverage as (alignment length / query length) * 100.
                 coverage = round(100 * hsp.align_length / self.query_length, 2)
                 ncbi_results.append({
                     "Database": "NCBI nr",
@@ -147,16 +144,17 @@ class ProteinBlastSearch:
                     "Coverage (%)": coverage
                 })
         return ncbi_results
-
+    
     def run_uniprot_blast(self):
         """
         Run BLAST search on UniProt via EBI's BLAST service.
-
-        Checks if an XML file (<prefix>_uniprot_blast_result.xml) exists. If so, it reuses it;
-        otherwise, it performs the search and saves the XML.
-
+        
+        Checks for an existing XML file (<prefix>_uniprot_blast_result.xml); if found, reuses it.
+        Otherwise, performs the BLAST search.
+        
         Returns:
-            list: List of dictionaries with BLAST hit information. For UniProt hits, includes "Hit ID".
+            list: List of dictionaries with BLAST hit data. For UniProt hits,
+                  extracts "Hit ID" from the XML.
         """
         xml_filename = f"{self.prefix}_uniprot_blast_result.xml"
         if os.path.exists(xml_filename):
@@ -186,7 +184,6 @@ class ProteinBlastSearch:
             job_id = response.text.strip()
             status_url = f"https://www.ebi.ac.uk/Tools/services/rest/ncbiblast/status/{job_id}"
             
-            # Poll for job completion with a dynamic elapsed time display.
             start_time = time.time()
             while True:
                 try:
@@ -195,7 +192,7 @@ class ProteinBlastSearch:
                     logging.error(f"Error polling UniProt BLAST status: {e}")
                     return []
                 if status_response.text.strip() == "FINISHED":
-                    print()  # End the dynamic line.
+                    print()
                     break
                 elapsed = time.time() - start_time
                 minutes = int(elapsed // 60)
@@ -216,12 +213,10 @@ class ProteinBlastSearch:
             with open(xml_filename, "w") as f:
                 f.write(result_xml)
         
-        # First attempt to parse using NCBIXML.
         try:
             blast_record = NCBIXML.read(StringIO(result_xml))
             uni_results = []
             for alignment in blast_record.alignments:
-                # Try to extract the hit ID from the alignment object if available.
                 hit_id = getattr(alignment, "hit_id", "")
                 for hsp in alignment.hsps:
                     coverage = round(100 * hsp.align_length / self.query_length, 2)
@@ -246,13 +241,13 @@ class ProteinBlastSearch:
     def parse_ebi_blast_xml(self, result_xml):
         """
         Fallback parser for EBI BLAST XML using ElementTree.
-
+        
         Args:
             result_xml (str): The XML content as a string.
-
+        
         Returns:
-            list: A list of dictionaries with parsed BLAST hit data. For UniProt hits,
-                  includes the "Hit ID" from the XML.
+            list: List of dictionaries with parsed BLAST hit data. For UniProt hits,
+                  extracts "Hit ID" from the XML attribute "id".
         """
         results = []
         try:
@@ -297,13 +292,13 @@ class ProteinBlastSearch:
         except Exception as e:
             logging.error(f"Error in fallback XML parsing: {e}")
         return results
-
+    
     def compile_results(self):
         """
         Load the protein sequence, run both BLAST searches, and compile the results.
-
+        
         Returns:
-            list: A combined list of BLAST result dictionaries.
+            list: Combined list of BLAST result dictionaries.
         """
         self.load_sequence()
         results = []
@@ -311,11 +306,11 @@ class ProteinBlastSearch:
         results.extend(self.run_uniprot_blast())
         self.results = results
         return results
-
+    
     def save_to_excel(self):
         """
         Save the compiled BLAST results to an Excel file.
-
+        
         The Excel file is named <prefix>_protein_search_results.xlsx.
         """
         if not self.results:
@@ -332,35 +327,35 @@ class ProteinBlastSearch:
 
 class PhylogeneticTreeBuilder:
     """
-    Class to generate and visualize a phylogenetic tree from BLAST hit sequences.
-
+    Class to generate a phylogenetic tree from unique BLAST hit sequences.
+    
     Attributes:
         results (list): List of BLAST result dictionaries.
-        prefix (str): File name prefix from the input FASTA.
-        seq_dict (dict): Mapping of unique sequence identifiers to hit sequences.
+        prefix (str): File name prefix (from input FASTA) used for all generated output files.
+        seq_dict (dict): Mapping from unique sequence identifiers to sequence strings.
     """
     
     def __init__(self, results, prefix):
         """
         Initialize the PhylogeneticTreeBuilder instance.
-
+        
         Args:
-            results (list): BLAST results from which to extract sequences.
-            prefix (str): The file name prefix from the input FASTA.
+            results (list): BLAST results.
+            prefix (str): Base name of the input FASTA file used as a prefix.
         """
         self.results = results
         self.prefix = prefix
         self.seq_dict = {}
-
+    
     def extract_unique_sequences(self):
         """
         Extract unique hit sequences from the BLAST results.
-
-        For UniProt hits, the "Hit ID" is used as the base identifier if available;
-        otherwise, the first token of "Hit Title" is used.
-
+        
+        For UniProt hits, uses the "Hit ID" (if available) as the base identifier;
+        otherwise, uses the first token of the "Hit Title".
+        
         Returns:
-            dict: A dictionary mapping unique identifiers to sequence strings.
+            dict: Mapping of unique identifiers to sequence strings.
         """
         for r in self.results:
             seq = r.get("Hit Sequence", "").strip()
@@ -378,31 +373,33 @@ class PhylogeneticTreeBuilder:
         if not self.seq_dict:
             logging.info("No hit sequences available for phylogenetic analysis.")
         return self.seq_dict
-
+    
     def write_fasta(self):
         """
-        Write the unique hit sequences to a FASTA file.
-
+        Write unique hit sequences to a FASTA file.
+        
+        The FASTA file is named <prefix>_hits.fasta.
+        
         Returns:
-            str: The FASTA filename (<prefix>_hits.fasta).
+            str: FASTA filename.
         """
         fasta_filename = f"{self.prefix}_hits.fasta"
         with open(fasta_filename, "w") as f:
             for id_, seq in self.seq_dict.items():
                 f.write(f">{id_}\n{seq}\n")
         return fasta_filename
-
+    
     def run_alignment(self, fasta_filename):
         """
         Run MUSCLE 5.3 to perform a multiple sequence alignment.
-
+        
         Uses MUSCLE 5.3 options: -align <input> -output <output>.
-
+        
         Args:
-            fasta_filename (str): Input FASTA file with unique sequences.
-
+            fasta_filename (str): FASTA file with unique sequences.
+            
         Returns:
-            str or None: The aligned FASTA filename (<prefix>_aligned_hits.fasta) or None if MUSCLE fails.
+            str or None: Aligned FASTA filename (<prefix>_aligned_hits.fasta) or None if alignment fails.
         """
         aligned_filename = f"{self.prefix}_aligned_hits.fasta"
         try:
@@ -411,16 +408,16 @@ class PhylogeneticTreeBuilder:
             logging.error("Error running MUSCLE: {}".format(e))
             return None
         return aligned_filename
-
+    
     def build_tree(self, aligned_filename):
         """
-        Construct a phylogenetic tree from the multiple sequence alignment.
-
+        Build a phylogenetic tree from the multiple sequence alignment.
+        
         Args:
             aligned_filename (str): Path to the aligned FASTA file.
-
+            
         Returns:
-            Bio.Phylo.BaseTree.Tree: The generated phylogenetic tree.
+            Bio.Phylo.BaseTree.Tree: Generated phylogenetic tree.
         """
         alignment = AlignIO.read(aligned_filename, "fasta")
         calculator = DistanceCalculator('identity')
@@ -428,40 +425,42 @@ class PhylogeneticTreeBuilder:
         constructor = DistanceTreeConstructor()
         tree = constructor.nj(dm)
         return tree
-
+    
     def generate_tree(self):
         """
         Generate the phylogenetic tree and save outputs.
-
-        The tree is saved in Newick format (<prefix>_phylogenetic_tree.nwk),
-        printed as an ASCII tree, and a graphical PDF image is saved (<prefix>_phylogenetic_tree.pdf).
-        Adjustments with plt.tight_layout() are applied for better readability.
+        
+        If the Newick tree file (<prefix>_phylogenetic_tree.nwk) exists, the tree is loaded.
+        In either case, the ASCII representation is printed and a PDF image is generated.
+        The PDF figure size is dynamically determined based on the number of terminal nodes.
         """
-        self.extract_unique_sequences()
-        if not self.seq_dict:
-            return
-        fasta_filename = self.write_fasta()
-        aligned_filename = self.run_alignment(fasta_filename)
-        if not aligned_filename:
-            return
-        tree = self.build_tree(aligned_filename)
         newick_filename = f"{self.prefix}_phylogenetic_tree.nwk"
         pdf_filename = f"{self.prefix}_phylogenetic_tree.pdf"
-        # Save the tree in Newick format.
-        Phylo.write(tree, newick_filename, "newick")
-        logging.info(f"Phylogenetic tree saved in Newick format to {newick_filename}")
-        # Print an ASCII representation of the tree.
+        if os.path.exists(newick_filename):
+            logging.info(f"Newick tree file {newick_filename} found. Loading tree...")
+            tree = Phylo.read(newick_filename, "newick")
+        else:
+            self.extract_unique_sequences()
+            if not self.seq_dict:
+                return
+            fasta_filename = self.write_fasta()
+            aligned_filename = self.run_alignment(fasta_filename)
+            if not aligned_filename:
+                return
+            tree = self.build_tree(aligned_filename)
+            Phylo.write(tree, newick_filename, "newick")
+            logging.info(f"Phylogenetic tree saved in Newick format to {newick_filename}")
         logging.info("Phylogenetic Tree (ASCII):")
         Phylo.draw_ascii(tree)
-        # Generate a graphical tree image with improved layout.
         try:
             import matplotlib.pyplot as plt
-            fig = plt.figure(figsize=(12, 10))
+            n_seq = len(tree.get_terminals())
+            fig_width = max(12, n_seq * 0.5)
+            fig_height = max(10, n_seq * 0.3)
+            fig = plt.figure(figsize=(fig_width, fig_height))
             axes = fig.add_subplot(1, 1, 1)
             Phylo.draw(tree, do_show=False, axes=axes)
-            plt.tight_layout()  # Adjust layout to avoid overlapping text.
-            # Optionally, adjust margins manually:
-            # plt.subplots_adjust(left=0.3, right=0.95, top=0.95, bottom=0.1)
+            plt.tight_layout()
             plt.savefig(pdf_filename)
             logging.info(f"Phylogenetic tree image saved to {pdf_filename}")
         except Exception as e:
@@ -471,8 +470,8 @@ class PhylogeneticTreeBuilder:
 def main():
     """
     Main pipeline function:
-
-    1. Validates command-line input.
+    
+    1. Validates command-line arguments.
     2. Creates a ProteinBlastSearch instance to run BLAST searches.
     3. Saves BLAST results to an Excel file.
     4. Creates a PhylogeneticTreeBuilder instance using the BLAST results and generates the tree.
@@ -484,12 +483,10 @@ def main():
     fasta_file = sys.argv[1]
     email = "your.email@example.com"  # Replace with your actual email address.
     
-    # Create the BLAST search object and run the searches.
     blast_searcher = ProteinBlastSearch(fasta_file, email)
     blast_searcher.compile_results()
     blast_searcher.save_to_excel()
     
-    # Create the tree builder and generate the phylogenetic tree.
     tree_builder = PhylogeneticTreeBuilder(blast_searcher.results, blast_searcher.prefix)
     tree_builder.generate_tree()
 
