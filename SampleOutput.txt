@@ -1,0 +1,1128 @@
+dell@dell-r810:/media/dell/BioBase1/Protein_Engineering/Protein_BLAST$ python3 prot_Search.py CYP97C27.fasta
+/usr/lib/python3/dist-packages/Bio/__init__.py:138: BiopythonWarning: You may be importing Biopython from inside the source tree. This is bad practice and might lead to downstream issues. In particular, you might encounter ImportErrors due to missing compiled C extensions. We recommend that you try running your code from outside the source tree. If you are outside the source tree then you have a setup.py file in an unexpected directory: /usr/lib/python3/dist-packages
+  warnings.warn(
+Loaded protein sequence: tr|A0A0A8KYF2|A0A0A8KYF2_9ROSI
+NCBI BLAST result file CYP97C27_ncbi_blast_result.xml found. Reusing it...
+UniProt BLAST result file CYP97C27_uniprot_blast_result.xml found. Reusing it...
+Parsing UniProt BLAST XML with NCBIXML failed: Invalid root node name: EBIApplicationResult. Root node should be either BlastOutput or BlastXML2
+Attempting fallback parsing with ElementTree...
+Results successfully saved to CYP97C27_protein_search_results.xlsx
+
+muscle 5.3.linux64 []  524Gb RAM, 80 cores
+Built Mar 12 2025 01:50:03
+(C) Copyright 2004-2021 Robert C. Edgar.
+https://drive5.com
+
+[align CYP97C27_hits.fasta]
+Input: 550 seqs, avg length 455, max 521, min 314
+
+00:00 5.5Mb   100.0% Derep 458 uniques, 92 dupes
+00:00 16Mb   CPU has 80 cores, running 80 threads
+01:50 6.0Gb   100.0% Calc posteriors  
+01:50 6.0Gb   100.0% UPGMA5         
+02:20 6.0Gb   100.0% Consistency (1/2)  
+02:54 6.0Gb   100.0% Consistency (2/2)  
+03:46 6.0Gb   100.0% Refining         
+Phylogenetic tree saved in Newick format to CYP97C27_phylogenetic_tree.nwk
+Phylogenetic Tree (ASCII):
+   _____ ref|XP_059646791.1|
+  |
+  |   ____________________ A0A5J4ZD93_9ASTE
+  |__|
+  |  |__ A0A5B6YVF4_DAVIN
+  |
+ ,|    , ref|XP_057462221.1|
+ ||    |
+ || ___| , A0A2R6Q9P8_ACTCC
+ |||   | |
+ |||   |_| gb|PSS04629.1|
+ |||     |
+ | |     | ref|XP_057462220.1|
+ | |
+ | |______ ref|XP_052173860.1|
+ |
+ |           , Q2VEX2_DAUCS
+ |        ___|
+ | ______|   | A0A164YEW1_DAUCS
+ ||      |
+ ||      |__ A0AAD8N3C6_9APIA
+ ||
+ ||        , A0AA88RJ21_9ASTE
+ ||________|
+ ||        | gb|KAK2983736.1|
+ ||
+ ||         _______ A0AAD5G141_AMBAR
+ ||        |
+ ||        |___ A0A251VTA1_HELAN
+ ||        |
+ ||        |  ____ A0A5N6LAM6_9ASTR
+ ||       _|_|
+ ||      | | |_ A0A5N6P4M1_9ASTR
+ ||      | |
+ ||      | |_____ A0AAP0GRF0_9ASTR
+ ||      |
+ ||______|      , A0AA35V6X3_LACSI
+ |       |      |
+ |       |______| A0A9R1WKZ1_LACSA
+ |       |      |
+ |       |      | A0AAU9NW69_9ASTR
+ |       |
+ |       |    , A0A286MU89_CHRMO
+ |       |    |
+ |       |____| A0A2U1NYM1_ARTAN
+ |            |
+ |            |______ A0A2U1MGX7_ARTAN
+ |
+ |             , A0A438EJN6_VITVI
+ |      _______|
+ |     |       | gb|RVW47943.1|
+ |     |
+ |     |  , A0A0A8KYF2_9ROSI
+ |     |  |
+ |     |  , F6HKE4_VITVI
+ |     |  |
+ |     |  , gb|WJZ93731.1|
+ | ____|  |
+ ||    |  , ref|XP_034693648.1|
+ ||    |  |
+ ||    |  , ref|XP_019077252.1|
+ ||    |  |
+ ||    |  , ref|XP_002265015.2|
+ ||    |  |
+ ||    |  , ref|XP_019077251.1|
+ ||    |__|
+ ||       | gb|AIO11761.1|
+ ||       |
+ ||       | ref|XP_034694163.1|
+ ||       |
+ ||       |  , A5BL03_VITVI
+ ||       |__|
+ ||          | emb|CAN65775.1|
+ ||
+ ||  ___________ A0A6A1UG40_9ROSI
+ || |
+ || |     _______ A0A830BD64_9LAMI
+ ||,| ___|
+ |||||   |______________ S8DXD4_9LAMI
+ |||||
+ |||||         __________ A0A6A2YS23_HIBSY
+ |||||  ______|
+ ||| | |      |    , A0A2P5YHI9_GOSBA
+ ||| | |      |____|
+ ||| | |           , A0A0B0PGU8_GOSAR
+ ||| |_|           |
+ |||   |           | A0A7J8UX10_9ROSI
+ |||   |
+ |||   |       _________ A0A218XB63_PUNGR
+ |||   |______|
+ |||          |______________ A0A4S8J1I0_MUSBA
+ | |
+ | |      , A0A4P9I8K4_9ERIC
+ | |      |
+ | |      | A0A4P9I8Q0_9ERIC
+ | |     ,|
+ | |     |, A0A4P9I8K7_9ERIC
+ | |     ||
+ | |    ,|| A0A4P9I8K3_9ERIC
+ | |    ||
+ | |    |, A0A0B4SXK9_CAMSI
+ | |    ||
+ | |    |, A0A4P9I8P6_9ERIC
+ | |____||
+ |      || A0A4P9I913_9ERIC
+ |      ||
+ |      || A0A4P9I949_9ERIC
+ |      |
+ |      |________________ A0A7J7GIK3_CAMSI
+ |
+ |           , A0A4Y7KYS8_PAPSO
+ |  _________|
+ | |         | A0AAD4T2N9_9MAGN
+ |,|
+ |||    , A0A200R5D7_MACCD
+ |||____|
+ ||     | gb|OVA17922.1|
+ ,|
+ ||     , A0A1U7Z308_NELNU
+ ||_____|
+ ||     , A0A1U7Z4E6_NELNU
+ ||     |
+ ||     | A0A822Y3W5_NELNU
+ ||
+ || _______ A0A9Q0QSF3_9MAGN
+ |||
+ |||   _____ A0A835DC60_TETSI
+ | | _|
+ | || |______ A0A835HLF6_9MAGN
+ | ||
+ |  |    __ A0A7J6V0R4_THATH
+ |  |   |
+ |  |___|  , A0A2G5EH64_AQUCA
+ |      | ,|
+ |      |_|| A0A2G5EGQ0_AQUCA
+ |        |
+ |        |____ A0A2G5EGM5_AQUCA
+ |
+ |      _____ A0AAN8W626_9MAGN
+ |_____|
+ |     |_____ A0AAN8VZJ5_9MAGN
+ |
+ |      _____________ A0A3S3P5J0_9MAGN
+ |     |
+ |     |                 _________ A0AA87ZLJ1_FICCA
+ |     |               _|
+ |_____|              | | _______ A0AAW0KIF6_QUESU
+ |     |              | ||
+ |     |              |  |________ A0A2H5QRP8_CITUN
+ |     |              |  |
+ |     |______________|  |__________________ A0A7J7KVK9_9MAGN
+ |                    |
+ |                    | _______________ A0A0B2RVG8_GLYSO
+ |                    ||
+ |                    ||  ____________ A0AAV7H341_DENCH
+ |                    ||,|
+ |                    ||||       _ A0A2Z5XAF2_PETHY
+ |                     |||______|
+ |                     ||       |__ A0A2Z5XAL1_9SOLA
+ |                     ||
+ |                     ||     _______________ A0A8T2RNN6_CERRI
+ |                     ||   _|
+ |                      |  | |     ____ A0A0D3HG96_9ORYZ
+ |                      |  | |____|
+ |                      |  |      |   , A0A9R0Q999_TRITD
+ |                      |  |      |___|
+ |                      |  |          |    , A0A9R0Q6Q8_TRITD
+ |                      |  |          |____|
+ |                      |__|               | A0A9R0QXC1_TRITD
+ |                         |
+ |                         |    _______ A0A061ET66_THECC
+ |                         |   |
+ |                         | __|    , A0A5J5NCX9_GOSBA
+ |                         ||  |   ,|
+ |                         ||  |___|| A0A5J5N780_GOSBA
+ |                         ||      |
+ |                         ||      |_ A0A7J8PQC0_GOSRA
+ |                          |
+ |                          |        ____________ A0AAE0AZT0_9ROSI
+ |                          | ______|
+ |                          ||      |________ A0A4Y7KCM3_PAPSO
+ |                           |
+ |                           |_________ A0AAN8Y4K3_SOLBU
+ |
+ | ________ ref|XP_021908779.1|
+ ||
+ ||      , A0AAD7Q8P0_QUISA
+ || _____|
+ |||     | gb|KAJ7976874.1|
+ |||
+ |||__________ A0A3G5ANI2_9FABA
+ |||
+ |||       ___ A0A445E764_ARAHY
+ |||    __|
+ |||   |  | A0A6P4CH88_ARADU
+ |||   |
+ |||  ,|   , A0A6A4NKH3_LUPAL
+ ,||  ||  ,|
+ |||  || _||_ A0AAV1XIX8_LUPLU
+ |||  ||| |
+ |||  ||| | A0A1J7GM37_LUPAN
+ |||  | |
+ ||| ,| |___ A0AAN9F1P4_CROPI
+ ||| ||
+ ||| ||     ____ A0A1S3E4P7_CICAR
+ ||| || ___|
+ ||| |||   | A0A1S2Z8I2_CICAR
+ ||| |||
+ ||| ||| _____ A0AAV0ZVQ2_VICFA
+ ||| | ||
+ ||| | ||  _______ A0A2K3P291_TRIPR
+ | | | ||_|
+ | | | || |__________ A0A2Z6P0E7_TRISU
+ | | |  |
+ | |,|  |   __ Q2MJ00_MEDTR
+ | |||  |__|
+ | |||     | G7IA76_MEDTR
+ | |||
+ | |||  ________ A0A151RK46_CAJCA
+ | ||| |
+ | ||| |   , I1L941_SOYBN
+ | ||| |  _|
+ | ||| | | | A0A445IJ26_GLYSO
+ | ||| |_|
+ | ||| | |___ A0A0R0GNV2_SOYBN
+ | ||| | |
+ | |||_| | ___ A0A445HG84_GLYSO
+ | ||  | ||
+ | ||  |  , A0A0R0GPC6_SOYBN
+ | ||  |  |
+ | ||  |  | A0A445HG40_GLYSO
+ | ||  |
+ | ||  |___ A0AAN9SFP3_PSOTE
+ | ||  |
+ |  |  |  , A0AAN9MIX0_PHACN
+ |  |  |  |
+ |  |  | ,|, A0A0L9TWN0_PHAAN
+ |  |  | |||
+ |  |  | ||| A0A0S3ST71_PHAAN
+ |  |  |_| |
+ |  |  | | | A0A1S3V7F5_VIGRR
+ |  |  | |
+ |  |  | |_ A0AA86SPC8_9FABA
+ |  |  |
+ |  |  |  _ A0AAN9M0D2_CANGL
+ |  |  |,|
+ |  |  |||_ A0A8B8MDT3_ABRPR
+ |  |  ||
+ |  |   |_ A0AAN9FJ54_CLITE
+ |  |   |
+ |  |   |___ A0A371GRZ2_MUCPR
+ |  |
+ |  | _______ A0A834SHU1_9FABA
+ |  ||
+ |   |____ A0AAE1JQX9_9FABA
+ |
+ |             _________ A0A834H5J4_RHOSS
+ |         ___|
+ | _______|   |_________________ A0AAV6KM98_9ERIC
+ ||       |
+ ||       |____________ A0A6A4LK62_9ERIC
+ ||
+ ||       _____ A0AAP0KVG5_9MAGN
+ || _____|
+ |||     |_ A0AAP0LDF0_9MAGN
+ |||
+ |||   ________________________ A0A9Q1GRY5_9CARY
+ ||| ,|
+ ||| || _______ A0AAW1N5U4_SAPOF
+ ||| |||
+ |||_| |   ___ A0A9R0IGH5_SPIOL
+ ||| | |__|
+ ||| |    |__ A0A803MGH5_CHEQI
+ |,| |
+ ||| |________ A0AAD3TG07_NEPGR
+ |||
+ ||| __________ A0A7L7RBC6_NOTNI
+ ||||
+ ||||     ___ A0A6A6KLI4_HEVBR
+ ||||   _|
+ ||||  | |_____ A0A3G2CJZ8_9ROSI
+ || |  |
+ || |  |                  , M1CQA3_SOLTU
+ || |  |            ______|
+ || |__|        ___|      |___ A0AAF0UW61_SOLVR
+ ||    |       |   |
+ ||    |       |   |______ A0A9J5X6H8_SOLCO
+ ||    |       |
+ ||    |       |        __ A0A445HG53_GLYSO
+ ||    |       |   ____|
+ ||    |_______|  |    |______ A0A4D6MWL5_VIGUN
+ ||            |  |
+ ||            |  |      _ A0A833XPE0_JUGRE
+ ||            |  |_____|
+ ||            |  |     | , A0A8T1P737_CARIL
+ ,|            |  |     |_|
+ ||            |__|       | A0A922DYX3_CARIL
+ ||               |
+ ||               |_________ R0H3T8_9BRAS
+ ||               |
+ ||               |       _________ A0A8B9A7U8_PHODC
+ ||               |      |
+ ||               |      | _____ A0A0D2PKE2_GOSRA
+ ||               |      ||
+ ||               |______||  ______ A0A6P6SYL2_COFAR
+ ||                      ||,|
+ ||                      ||||     , A0A2Z0N209_9GENT
+ ||                      ||||_____|
+ ||                      |||      | A0A0A7ACG9_9GENT
+ ||                      |||
+ ||                       ||______ A0A9N7RGU0_STRHE
+ ||                       |
+ ||                       |     , A0AAJ6TXA6_POPEU
+ ||                       |_____|
+ ||                       |     | A0A8T2YKY5_POPDE
+ ||                       |
+ ||                       |         _______ V7BHG4_PHAVU
+ ||                       |        |
+ ||                       |________|________ A0A2Z4L0Q9_9ASTR
+ ||                                |
+ ||                                |     , A0AAD6QMW0_9ROSI
+ ||                                |_____|
+ ||                                |     | A0A8T2YL26_POPDE
+ ||                                |
+ ||                                |_______ A0A8S0TBN8_OLEEU
+ ||
+ || ____________ A0AAV7E387_ARIFI
+ |||
+ |||       ______________ A0A843UFB9_COLES
+ |||     ,|
+ |||     ||______ A0A1D1YKY1_9ARAE
+ |||  ___|
+ ||| |   |     , A0A7I8L226_SPIIN
+ ||| |   |_____|
+ ||| |         |______ A0A7I8J9A9_SPIIN
+ ||| |
+ ||| |         _ A0AAV9CPR8_ACOCL
+ ||| |________|
+ ||| |        , A0AAV9ASQ2_ACOGR
+ ||| |        |
+ ||| |        | A0AAV9EPV4_ACOCL
+ ||| |
+ ||| | _____________ A0A5P1E4V7_ASPOF
+ ||| ||
+ ||| ||      ____________ A0AB40CG19_DIOCR
+ ||| ||_____|
+ ||| ||     |_____ A0A9D5H8H9_9LILI
+ ||| ||
+ ||| ||        , A0A6P5FDH8_ANACO
+ ||| || _______|
+ ||| |||       |, A0A6P5FEE8_ANACO
+ ||| |||       ||
+ ||| |||        , A0A6P5FLG4_ANACO
+ ||| |||        |
+ ||| |||        | A0A6P5FFE6_ANACO
+ ||| |||
+ ||| ,||         , A0AAD5ZAA2_9POAL
+ ||| |||         |
+ ||| |||        _|, A0A9Q0CH71_9POAL
+ ||| |||       | ||
+ |||,|||       | |, A0AAV8F211_9POAL
+ |||||||       |  |
+ |||||||       |  |, A0AAV8GC18_9POAL
+ |||||||  _____|  ||
+ ||||||| |     |  || A0AAV8E945_9POAL
+ ||||||| |     |   |
+ ||||||| |     |   | A0AAV8E408_9POAL
+ ||||||| |     |
+ ||||||| |     | , A0A833QBF1_9POAL
+ ||||||| |     |_|
+ ||||| | |       | A0A833Q8I7_9POAL
+ ||||| | |
+ ||||| | |     _____ A0A5J9V751_9POAL
+ ||||| | |    |
+ ||||| | |    |    , A0A2T7CAB4_9POAL
+ ||||| | |    |    |
+ ||||| | |    |   ,| A0A2S3INX0_9POAL
+ ||||| | |    |   ||
+ ||||| | |    |   || A0A3L6SDS0_PANMI
+ ||||| | |    |   |
+ ||||| | |    |   |, A0A8T0NLA4_PANVG
+ ||||| | |    |   ,|
+ ||||| | |    |   || A0A8T0NRX1_PANVG
+ ||||| | |    |  ,|
+ ||||| | |    |  ||, A0A8T0MRA5_PANVG
+ ||||| | |    |  |||
+ ||||| | |    |  ||| A0A8T0MXQ9_PANVG
+ ||||| | |    |  ||
+ ||||| | |    |  || A0A3L6TG54_PANMI
+ ||||| |_|    | _|
+ |||||   |    || |_ A0AAQ3WCI2_PASNO
+ |||||   |    || |
+ |||||   |    || |  , K4A815_SETIT
+ | |||   |    || | _|
+ | |||   |    || || , A0A368SNG1_SETIT
+ | |||   |    || || |
+ | |||   |    || || | A0A4U6T3B7_SETVI
+ | |||   |    || ||
+ | |||   |    || ||_ A0A835BER0_9POAL
+ | |||   |    || |
+ | |||   |    || |      ___ A0AAQ3SNF1_PASNO
+ | |||   |    || |_____|
+ | |||   |    ||       |___ A0A835F4R2_9POAL
+ | |||   |    ||
+ | |||   |    ||    , A0A811MB83_9POAL
+ | |||   |    ||  __|
+ | |||   |    || |  | A0A811MXW4_9POAL
+ | |||   |    || |
+ | |||   |    || | _ A0A1B6QM31_SORBI
+ | |||   |    ||_||
+ | |||   |    |  ||_ K9J9Z8_MAIZE
+ | |||   |    |  |
+ | |||   |    |  |________ A0A811SRL4_9POAL
+ | |||   |    |
+ | |||   |    |  ____ I1I5X8_BRADI
+ | |||   |____| |
+ | |||        | |   , A0AAD8TYX3_LOLMU
+ | |||        | | __|
+ | |||        | ||  | A0AAD8U0R6_LOLMU
+ | |||        | ||
+ | |||        |_||  , A0A9R0QUC2_TRITD
+ | |||        | ||  |
+ | |||        | ||  | A0A9R0QW53_TRITD
+ | |||        | ||  |
+ | |||        | || _|, A0A9R0UYY0_TRITD
+ | |||        | ||| ,|
+ | |||        | ||| || A0A9R0UWZ5_TRITD
+ | |||        | ||| |
+ | |||        |  || |, A0A452YT59_AEGTS
+ | |||        |  || ||
+ | |||        |  ||  | A0A452YT66_AEGTS
+ | |||        |  ||
+ | |||        |  ||, A0A9R0QWE7_TRITD
+ | |||        |  |,|
+ | |||        |  ||, A0A9R0QXD2_TRITD
+ | |||        |  |||
+ | |||        |  ||, A0A9R1DCZ5_WHEAT
+ | |||        |  |||
+ | |||        |   |, A0A3B5YYL4_WHEAT
+ | |||        |   ||
+ | |||        |   |, A0A3B5YXA1_WHEAT
+ | |||        |   ||
+ | |||        |   || A0A9R1DD10_WHEAT
+ | |||        |   |
+ | |||        |   |, F2CWS5_HORVV
+ | |||        |   ||
+ | |||        |   ||, A0A9R1DNN0_WHEAT
+ | |||        |   |,|
+ | |||        |   ||| A0A3B5ZW14_WHEAT
+ | |||        |   ||
+ | |||        |   ||, A0A452YT73_AEGTS
+ | |||        |   |||
+ | |||        |   ||| A0A452YT61_AEGTS
+ | |||        |   ||
+ | |||        |   |, A0A9R0Q6Z1_TRITD
+ | |||        |   ||
+ | |||        |   || A0A3B5XZV7_WHEAT
+ | |||        |   ||
+ | |||        |   ||____ A0A3B5XZV6_WHEAT
+ |  ||        |   |
+ |  ||        |   |__ M7ZCE9_TRIUA
+ |  ||        |
+ |  ||        |     _ A0A8J5WPP2_ZIZPA
+ |  ||        |  __|
+ |  ||        | |  |, A0A8J5WMG1_ZIZPA
+ |  ||        | |  ||
+ |  ||        | |   | A0A8J5WNQ9_ZIZPA
+ |  ||        | |
+ |  ||        | |   , A0A6G1EVC7_9ORYZ
+ |  ||        | |  _|
+ |  ||        |_|,| | A0A6G1EVH2_9ORYZ
+ |  ||          |||
+ |  ||          |||_ J3N4M3_ORYBR
+ |  ||          ||
+ |  ||          || _ A0A0E0MAD6_ORYPU
+ |  ||          |||
+ |  ||          ||| _____ A0A0E0F0M8_9ORYZ
+ |  ||          ||||
+ |  ||           ||| , A0A0E0IW04_ORYNI
+ |  ||           |||,|
+ |  ||           ||||| A0A0E0BDD1_9ORYZ
+ |  ||           |,||
+_|  ||           |||| Q9AV27_ORYSJ
+ |  ||           |||
+ |  ||           |||, B8BI40_ORYSI
+ |  ||            |||
+ |  ||            | , A0A0E0R228_ORYRU
+ |  ||            | |
+ |  ||            | , A0A8J8XZA4_ORYSJ
+ |  ||            | |
+ |  ||            | , Q336V3_ORYSJ
+ |  ||            | |
+ |  ||            | , A0A0E0F0M7_9ORYZ
+ |  ||            | |
+ |  ||            | , A0A0E0IW00_ORYNI
+ |  ||            | |
+ |  ||            | , A0A0E0BDD0_9ORYZ
+ |  ||            | |
+ |  ||            | , I1QVN2_ORYGL
+ |  ||            | |
+ |  ||            | , A0A0E0R230_ORYRU
+ |  ||            | |
+ |  ||            | | A0A0E0F0M2_9ORYZ
+ |  ||            |
+ |  ||            |       ___ A0A0E0F0M4_9ORYZ
+ |  ||            | _____|
+ |  ||            ||     | A0A0E0F0M3_9ORYZ
+ |  ||            ||
+ |  ||            ||        , A0A0E0IW05_ORYNI
+ |  ||             |       _|
+ |  ||             |      | | A0A0E0BDD2_9ORYZ
+ |  ||             |      |
+ |  ||             |______| , A0A0E0IW03_ORYNI
+ |  ||                    |,|
+ |  ||                    ||, A0A0E0R229_ORYRU
+ |  ||                    |||
+ |  ||                     || A0A0E0R231_ORYRU
+ |  ||                     |
+ |  ||                     |______ A0A0E0F0M5_9ORYZ
+ |  ||
+ |  ||    _____ A0AAQ3KL93_9LILI
+ |  ||   |
+ |  || __|    , A0AAV8RX50_ENSVE
+ |  |||  |    |
+ |  |||  |____| , A0A804L402_MUSAM
+ |  |||       |,|
+ |  |||       ||, A0A804L404_MUSAM
+ |  |||       |||
+ |  |||        || A0A804L403_MUSAM
+ |  |||        |
+ |  |||        |_ A0A8D7FRR5_MUSAM
+ |  | |
+ |  | |      _ A0A8B9A7T9_PHODC
+ |  | |     |
+ |  | |_____|  _ A0A6I9QDP5_ELAGV
+ |  | |     |,|
+ |  | |     |||, A0A6I9QF56_ELAGV
+ |  | |     ||||
+ |  | |      | | A0A6I9QE79_ELAGV
+ |  | |      |
+ |  | |      | A0A8K0ILZ2_COCNU
+ |  | |
+ |  | |  __________ A0A2H9ZXM0_9ASPA
+ |  | | |
+ |  | |_|        _ A0A835UX47_VANPL
+ |  |   | ______|
+ |  |   ||      |__ A0A835QLT1_VANPL
+ |  |   ||
+ |  |    |           , A0AAP0BHT7_9ASPA
+ |  |    | __________|
+ |  |    ||          | A0AAP0BJ42_9ASPA
+ |  |     |
+ |  |     |________________________ A0AAV7HJL5_DENCH
+ |  |
+ |  |______________ A0A0K9PFF2_ZOSMR
+ |  |
+ |  | ____________ W1NM64_AMBTC
+ |  ||
+ |  ||  _______________ A0AA38GPE2_TAXCH
+ |  || |
+ |  || |          ______ A0A9D4UYU6_ADICA
+ |   | |  _______|
+ |   | | |       |______ A0A8T2RNI0_CERRI
+ |   | | |
+ |   | | |                      , D8T8A2_SELML
+ |   |_| |    __________________|
+ |     | |   |                  | D8TBL1_SELML
+ |     | |  ,|
+ |     | |  ||         , A0A0E4B3I0_MARPO
+ |     | |  ||_________|
+ |     | |  |          |____ A0A176W2W5_MARPO
+ |     | | ,|
+ |     |_| ||         ____ A0A8T0GAH3_CERPU
+ |       | ||________|
+ |       | ||        |___ A9TSP5_PHYPA
+ |       | ||
+ |       | ||                 ___ A0A388KHV2_CHABU
+ |       | ||  ______________|
+ |       | || |              |___ A0A388JUR9_CHABU
+ |       | ||_|
+ |       | |  | _______________ A0A1Y1HWV4_KLENI
+ |       | |  ||
+ |       | |   |               , A0A9P3IQG7_9VIRI
+ |       | |   |_______________|
+ |       |_|                   | A0A9P3JX53_9VIRI
+ |         |
+ |         |     ____________________________ A0A7S1NB92_9EUGL
+ |         |    |
+ |         |    |                      _______ A0AAE0BNG8_9CHLO
+ |         |    | ____________________|
+ |         |    ||                    | A0AAE0BP13_9CHLO
+ |         |    ||
+ |         |    ||  ________________________ A0A7S0MQW1_9CHLO
+ |         |    || |
+ |         |    || |     ______________________ A0A8S1IMA9_9CHLO
+ |         |    || |    |
+ |         |    || |    |                 , A0AAW1QPJ5_9CHLO
+ |         |____|| |    |  _______________|
+ |              || |    | |               | A0AAW1QPG6_9CHLO
+ |              || |    | |
+ |              || |    | |                  , A0AAW1SQ14_9CHLO
+ |              || |    | |           _______|
+ |              || |    | |__________|       | A0AAW1R2E9_9CHLO
+ |              || |    | |          |
+ |              || |    | |          |______ A0AAW1TD70_9CHLO
+ |              || |    | |
+ |              || |    | |   _____________ A0AAW1RV37_9CHLO
+ |              || |    | |__|
+ |              || |    |,|  |  __________ A0AAV1IB10_9CHLO
+ |              || |____|||  |_|
+ |               | |    |||    |     _____ I0YZ68_COCSC
+ |               | |    |||    |____|
+ |               | |    |||         |_____ A0A8J9RIB0_9CHLO
+ |               | |    |||
+ |               | |    ||| _______________ A0A513TZG3_9CHLO
+ |               | |    ||||
+ |               | |    ||||     __________ A0A9D4TUJ0_CHLVU
+ |               | |    || |    |
+ |               | |    || |____|    _______ A0AAD5DGH7_9CHLO
+ |               | |    ||      |  _|
+ |               | |    ||      |_| |______ E1ZB59_CHLVA
+ |               | |    ||        |
+ |               | |    ||        |_________ A0A2P6VRW8_9CHLO
+ |               | |    ||
+ |               | |    ||         ___________ A0A2V0NZ10_9CHLO
+ |               | |    ||    ____|
+ |               | |     |   |    |      ____ A0A7J7Q2M8_9CHLO
+ |               | |     |   |    |_____|
+ |               | |     |   |          |___ A0A383VQA8_TETOB
+ |               | |     |   |
+ |               |_|     |   |  ___________ A0A250WVN4_9CHLO
+ |                 |     |  ,| |
+ |                 |     |  || |      ________ A0A2J8AGQ5_9CHLO
+ |                 |     |  || |     |
+ |                 |     |  || |    ,|       , A0A8J4BFU1_9CHLO
+ |                 |     |  || |    ||  _____|
+ |                 |     |  || |    || |     , A0A8J4BF01_9CHLO
+ |                 |     |  || |    ||_|     |
+ |                 |     |  ||_|   _|  |     | A0A8J4BGA6_9CHLO
+ |                 |     |  |  |  | |  |
+ |                 |     |  |  |  | |  |______ A0A9W6BX34_9CHLO
+ |                 |     |  |  |  | |
+ |                 |     |  |  |  | |   ______ A0A835VZG3_9CHLO
+ |                 |     |__|  | ,| |__|
+ |                 |        |  | ||    |  _ A5YU13_CHLRE
+ |                 |        |  | ||    |_|
+ |                 |        |  | ||      |__ A0A835WDH9_CHLIN
+ |                 |        |  |_||
+ |                 |        |    ||__________ A0AAD3HKB6_9CHLO
+ |                 |        |    |
+ |                 |        |    |        __ A0A836BQG3_9CHLO
+ |                 |        |    |_______|
+ |                 |        |            |_________ A0A836BQT9_9CHLO
+ |                 |        |
+ |                 |        | ____________ A0A218KRF1_DUNSA
+ |                 |        ||
+ |                 |         |                 , V5K5Q9_HAELA
+ |                 |         |_________________|
+ |                 |                           | J7I854_HAELA
+ |                 |
+ |                 |                            , A0A7S3CGY5_9CHLO
+ |                 |____________________________|
+ |                                              | A0AAX4P809_9CHLO
+ |
+ |           , A0A7G0WJD3_IPOBA
+ |     ______|
+ |    |      | A0A1L1WGK5_IPOBA
+ |   _|
+ |  | |  ______ A0A328E111_9ASTE
+ |  | | |
+ |  | |_|        , A0A9P0ZWE3_CUSEU
+ |  |   |       ,|
+ |  |   |       || A0A9P1A116_CUSEU
+ |  |   |_______|
+ |  |           |     , A0AAV0FSR8_9ASTE
+ |  |           |_____|
+ | ,|                 | A0AAV0DXT0_9ASTE
+ | ||
+ | ||      __ A0A2G2YMU2_CAPAN
+ | ||     |
+ | ||     | , A0A0A7DVM6_LYCBA
+ | ||     |,|
+ | ||     ||| A0A0A7DVR3_LYCRU
+ | ||     ||
+ | ||     || , A0A1U7UMF8_NICSY
+ | ||_____,|,|
+ | |      |||| A0A1S3X6T0_TOBAC
+ | |      |,|
+ | |      ||, A0A1S4AFI2_TOBAC
+ | |      |||
+ | |      ||| A0A314LF02_NICAT
+ | |      ||
+ | |      || , A0A9Q1LCG8_9SOLA
+ | |      ||_|
+ | |      |  | A0AAE1R5B0_9SOLA
+ | |      |
+ | |      | ________ A0AAV9LL29_9SOLN
+ | |      ||
+ | |      ||  ____ M1CQA2_SOLTU
+ | |      ||,|
+ | |      |||| M1CQA4_SOLTU
+ | |       ||
+ | |       ||, A0A3Q7JG91_SOLLC
+ | |       |||
+ | |       ||| D2CV78_SOLLC
+ | |        ||
+ | |        || A0A6N2BNK3_SOLCI
+ | |        |
+ | |        |________ A0A0V0I509_SOLCH
+ | |
+ | |          , A0A6P6SZ78_COFAR
+ | |    ______|
+ | |___|      | A0A068V3F0_COFCA
+ | |   |
+ | |   |_____ A0AAV1CRA1_OLDCO
+ | |
+ | |          _ A0A178VFG4_ARATH
+ | |        ,|
+ | |        ||, A0A5S9XL39_ARATH
+ | |        |||
+ | |        | , LUT1_ARATH
+ | |        | |
+ | |        | , A0A8T2FD54_ARASU
+ | |        | |
+ | |       _| , A0A8T2F336_9BRAS
+ | |      | | |
+ | |      | | , A0A654FFG7_ARATH
+ | |      | | |
+ | |      | | | A0A7G2ESE0_ARATH
+ | |      | |
+ | |      | |_ D7LUF0_ARALL
+ | |      | |
+ | |      | |, A0A8S2AI88_ARAAE
+ | |      | ||
+ | |      |  |, A0A8T1ZPX2_9BRAS
+ | |      |  ||
+ | |      |   | A0A8T2A1E8_ARASU
+ | |      |
+ | |      | ____ A0AAU9SE03_THLAR
+ | |      ||
+ | |      ||, A0A8F0K6J3_ISATI
+ | |      |||
+ |_|      ||| V4L4B7_EUTSA
+ | |______,|
+ | |      ||_ A0A087GXE7_ARAAL
+ | |      ||
+ | |      ||_ A0A565BVW9_9BRAS
+ | |      ||
+ | |      || _ A0A6D2I1M0_9BRAS
+ | |      |||
+ | |      | |, A0A1J3DNL7_NOCCA
+ | |      | ||
+ | |      |  |, A0A1J3G3H3_NOCCA
+ | |      |  ||
+ | |      |   | A0A1J3J027_NOCCA
+ | |      |
+ | |      |  _ A0A6J0K3L2_RAPSA
+ | |      | |
+ | |      | |_____ A0A8S9PT76_BRACR
+ | |      | |
+ | |      |_|, A0A0D3CTJ4_BRAOL
+ | |      | ||
+ | |      | || A0A8X7TRU7_BRACI
+ | |      | ||
+ | |      | |, A0A397YLE8_BRACM
+ | |      | ||
+ | |      | ||__ A0A3P6BEK6_BRACM
+ | |      | |
+ | |      | |, A0A078FK25_BRANA
+ | |      | ||
+ | |      | ||, A0A3P6H145_BRAOL
+ | |      |  ||
+ | |      |  || A0A816YZG3_BRANA
+ | |      |   |
+ | |      |   | A0A816QBE5_BRANA
+ | |      |
+ | |      |____________ V4KP90_EUTSA
+ | |
+ | |  _______ A0A022RND2_ERYGU
+ | | |
+ | | |      ____________ A0A8X9ABX9_SALSN
+ | | | ____|
+ | | ,|    |___ A0A0B4VT05_SALMI
+ | |_||
+ |   ||____________ A0A2Z7DEW3_9LAMI
+ |   |
+ |   |      , A0AAW2R452_SESRA
+ |   |    __|
+ |   |  _|  |_ A0AAE2BSY2_9LAMI
+ |   | | |
+ |   | | |_______ A0A5A7QJX6_STRAF
+ |   |,|
+ |   |||      __ A0A8S0TBI8_OLEEU
+ |   |||     |
+ |   |||_____| , A0A8S0TCE2_OLEEU
+ |   ||      | |
+ |   ||      |_| A0A8S0TF58_OLEEU
+ |    |        |
+ |    |        |______ A0A8S0TEC0_OLEEU
+ |    |
+ |    | ______ A0A2G9HVD6_9LAMI
+ |    ||
+ |    || _______ A0AAV6XBM8_9LAMI
+ |     ||
+ |     ||  __ A0AAE1XXA1_9LAMI
+ |      | |
+ |      |_| _ A0AAW2U0G4_9LAMI
+ |        ||
+ |        ||_ A0A6I9U2P4_SESIN
+ |         |
+ |         |  ______________ A0AAW2N6P7_9LAMI
+ |         |,|
+ |         ||| A0AAW2J509_9LAMI
+ |          |
+ |          |__________________ A0AAW2KUE3_SESRA
+ |
+ |   ______ A0A140CWR0_BIXOR
+ | _|
+ || |_______ A0AAV5LJZ6_9ROSI
+ ||
+ ,| _________ A0A7J7DVQ9_TRIWF
+ |||
+ |||       ______ A0A1R3IH47_COCAP
+ |||  ____|
+ ||| |    |_ A0A1R3IN89_9ROSI
+ | | |
+ | | |  _____ A0A6P5Z194_DURZI
+ | | | |
+ | |_|_|    , A0AB32WIS2_THECC
+ |   | |   _|
+ |   | |__| | A0A061ESJ8_THECC
+ |   |    |
+ |   |    | A0A6J1ARB8_9ROSI
+ |   |
+ |   |  ___ A0A9W7GWI8_HIBTR
+ |   | |
+ |   | |  , A0A7J8S0K6_GOSDV
+ |   | | ,|
+ |   | | |, A0A5B6VS15_9ROSI
+ |   |_| ||
+ |     | ||___ A0A7J9LPB6_GOSSC
+ |     | |
+ |     | |________________ A0A7J9C357_GOSGO
+ |     | |
+ |     | |, A0A9D4A4G5_9ROSI
+ |     |_,|
+ |       |, A0A0D2R5C5_GOSRA
+ |       ||
+ |       |, A0A5D2XF19_GOSMU
+ |       ||
+ |       |, A0A5D2NLN2_GOSTO
+ |       ||
+ |       |, A0A5J5U1J4_GOSBA
+ |       ||
+ |       || A0A5D2ETF4_GOSDA
+ |       |
+ |       |, A0A5D2IZL7_GOSTO
+ |       ||
+ |       || A0A5D2T2W5_GOSMU
+ |       ||
+ |        |, A0A5D2IYE6_GOSTO
+ |        ||
+ |         | A0A8J5YEN8_9ROSI
+ |
+ |        __ A0A059DEX1_EUCGR
+ |  _____|
+ | |     |__ A0A8B8NJ57_9MYRT
+ |_|
+ | |    ____ A0A6P8DKI1_PUNGR
+ | |___|
+ |     |         , A0AAN7JY29_9MYRT
+ |     |_________|
+ |               |______ A0AAN7MF46_TRANT
+ |
+ | __________ A0A7N0R9F4_KALFE
+ ||
+ ||_______________ A0AAV3NUW0_LITER
+ |
+ |        _ A0A8T2YKQ7_POPDE
+ |      _|
+ |     | , A0A2K2A0V3_POPTR
+ |     | |
+ |     | | A0A8T2YKR5_POPDE
+ |     |
+ |     |  , A0A9Q0Q3U1_SALPP
+ |     |  |
+ | ____|  , A0A9Q0VE64_9ROSI
+ ||    |  |
+ ||    | ,| A0A9Q0VFS5_9ROSI
+ ||    | ||
+ ||    | ||, A0A6N2K6L9_SALVM
+ ||    | |||
+ ||    | | | A0AAD6JM73_9ROSI
+ ||    |_|
+ ||      |, A0AAJ6TXN7_POPEU
+ ||      ,|
+ ||      || A0AAJ6TXF6_POPEU
+ ||      |
+ ||      |, A0A4U5QQK5_POPAL
+ ,|      ,|
+ ||      || A0A6M2EGE8_9ROSI
+ ||      |
+ ||      |    , A0A8X7ZH31_POPTO
+ ||      |   _|
+ ||      |  | | A0A8X7ZL33_POPTO
+ ||      |__|
+ ||         |_ A0A5N5MB93_9ROSI
+ ||         |
+ ||         |_ A0A835MWT3_9ROSI
+ ||
+ ||____________ A0AAV8SPM7_9ROSI
+ ||
+ ||          , A0AAV0PGE1_9ROSI
+ ||         _|
+ ||        | | A0AAV2FKY0_9ROSI
+ || _______|
+ |||       | , A0AAV2DGL3_9ROSI
+ |||       |_|
+ | |         |__ A0AAV0JD28_9ROSI
+ | |
+ | |__________ A0A9Q0JRC4_9ROSI
+ |
+ | ______ ref|XP_065857299.1|
+ ||
+ || ____ A0A067JZ47_JATCU
+ |||
+ |||    , A0A2C9VEV7_MANES
+ |||  __|
+ ||| |  | ref|XP_021619250.1|
+ |||_|
+ ||| | , ref|XP_021677418.2|
+ ||| |_|
+ | |   , ref|XP_021677417.2|
+ | |   |
+ | |   | gb|KAJ9181496.1|
+ | |
+ | |______ B9S0A8_RICCO
+ |
+ |       _______ A0A5C7HMV9_9ROSI
+ |      |
+ |      |, A0AAD5I5T3_ACENE
+ |     _||
+ |    | || A0AA39VNU7_ACESA
+ |    | |
+ |    | |_ A0AAD9X987_9ROSI
+ | ___|
+ ||   | , gb|KAK4833618.1|
+ ||   | |
+ ||   | | gb|KAI9153402.1|
+ ||   |_|
+ ||     |, gb|KAK0584848.1|
+ ||     ||
+ ||      | gb|KAK1554678.1|
+ ||
+ ||  _____ ref|XP_031285161.1|
+ ||,|
+ ||||_____ gb|KAJ4705064.1|
+ |||
+ |||      , gb|KAK9195309.1|
+ |||     ,|
+ |||     |, V4SS56_CITCL
+ |||     ||
+ |||     || ref|XP_006428525.1|
+ |||     |
+ |||    ,|, gb|KAH9734571.1|
+ |||    |,|
+ | |    |||, A0A1L7NT18_CITUN
+ | |    ||||
+ | |    || | dbj|BAW33060.1|
+ | |    ||
+ | |    ||, A0A067EGX9_CITSI
+ | |    |||
+ | |    ||| gb|KDO54333.1|
+ | |    |,|
+ | |    ||, A0A067EKC1_CITSI
+ | |____|||
+ |      ||| gb|KDO54335.1|
+ |      ||
+ |      ||     _ A0AAP0LYM3_9ROSI
+ |      ||____|
+ |      |     , ref|XP_024948557.1|
+ |      |     |
+ |      |     |, A0A067EGN3_CITSI
+ |      |     ||
+ |      |      | gb|KDO54334.1|
+ |      |
+ |      |___________ A0A067ETU6_CITSI
+ |
+ |      , A0A8J4RIQ9_9ROSI
+ |      |
+ |  ____|, A0A7N2M7L8_QUELO
+ | |    ,|
+ | |    || A0AAN7EZM3_QUERU
+ | |    |
+ | |    |, A0AAW2BNN3_9ROSI
+ | |    ||
+ | |     | gb|KAK9985680.1|
+ | |
+ | |     , A0A6P9E877_JUGRE
+ | |    ,|
+ | |    |, A0A833XYL7_JUGRE
+ | |    ||
+ |,|    |, A0A2I4E0V7_JUGRE
+ |||    ||
+ |||    |, ref|XP_035544445.1|
+ |||    ||
+ |||    || ref|XP_018813031.1|
+ |||    |
+ |||____| ref|XP_041024923.1|
+ |||    |
+ |||    | , A0A922E0Q4_CARIL
+ |||    | |
+ |||    | | gb|KAG7961224.1|
+ |||    |_|
+ |||      , A0A8T1PH36_CARIL
+ |||      |
+ |||      | ref|XP_042940175.1|
+ ,||
+ |||    __ dbj|GLT71790.1|
+ |||   |
+ |||   |  , A0A5N6RIX5_9ROSI
+ |||___| _|
+ ||    ,| | gb|KAE8098397.1|
+ ||    ||
+ ||    ||__ ref|XP_059462793.1|
+ ||    |
+ ||    |__ ref|XP_062165800.1|
+ ||
+ ||      , A0A6J1ICJ1_CUCMA
+ ||    __|
+ ||   |  |, A0AAV6NCS7_9ROSI
+ ||   |  ||
+ ||___|   | A0A6J1HG80_CUCMO
+ |    |
+ |    | ___ A0A6J1CRM7_MOMCH
+ |    ||
+ |     |  _ A0A0A0KIH3_CUCSA
+ |     |_|
+ |       |, emb|CAK9320121.1|
+ |       ||
+ |        |, A0A1S3CIN0_CUCME
+ |        ||
+ |         , A0A5A7SKS2_CUCMM
+ |         |
+ |         | A0A5D3C7X9_CUCMM
+ |
+ |      _ A0AAP0S9X7_LIQFO
+ | ____|
+ ||    | gb|KAK9290597.1|
+ ||
+ || ______ A0A8K0ED28_9ROSA
+ ,||
+ |||     , A0A6P4B8F6_ZIZJJ
+ ||| ____|
+ ||||    | ref|XP_015898578.1|
+ ||||
+ ||||______ W9RX48_9ROSA
+ | |
+ | |     _ A0A2P5C533_PARAD
+ | |  __|
+ | | |  | A0A2P5FVP5_TREOI
+ | |_|
+ |   |     , A0A7J6GYR8_CANSA
+ |   |    ,|
+ |   |____|| A0A803Q445_CANSA
+ |        |
+ |        |___________ A0A7J6I9G2_CANSA
+ |
+ | ________ A0A1Q3B4G2_CEPFO
+ ||
+ ||      _ A0A2P6RB87_ROSCH
+ ||   __|
+ ||  |  | _ A0AAW1WB98_RUBAR
+ ||  |  ||
+  |  |   |_____ A0A5A4LKI2_RUBID
+  |  |
+  |  |       __ A0A4Y1RVD7_PRUDU
+  |  |    __|
+  |__|   |  |____ A0A498I4U9_MALDO
+     |  ,|
+     |  ||  , A0A5N5FZJ7_9ROSA
+     |  ||__|
+     |  |   | A0A540MEW6_MALBA
+     |  |
+     |  | , A0A6J5XWY1_PRUAR
+     |__|,|
+        ||| A0A6J5VMY9_PRUAR
+        ||
+        || ___ A0A6P5RQG3_PRUAV
+        |||
+        ||, A0AAD4V796_PRUDU
+        |||
+        ||| M5VWC4_PRUPE
+         ||
+         ||, A0A5E4E1D7_PRUDU
+         |||
+         | | A0A5E4E110_PRUDU
+         |
+         |________ A0A314ZS54_PRUYE
+
+Phylogenetic tree image saved to CYP97C27_phylogenetic_tree.pdf
